@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>吸電子菸真的比較好嗎？</title>
+    <meta
+      name="description"
+      content="電子菸不是比較安全。從尼古丁濃度、室內空污、肺部疾病到爆炸風險，這份一頁式網站整理官方資料與關鍵數據。"
+    />
+    <style>
+      :root {
+        --bg: #0c0b10;
+        --bg-2: #15121a;
+        --panel: rgba(24, 19, 25, 0.88);
+        --panel-strong: rgba(34, 23, 31, 0.96);
+        --text: #f3ece6;
+        --muted: #c8b8af;
+        --line: rgba(255, 132, 102, 0.22);
+        --accent: #ff5e36;
+        --accent-2: #ffb06b;
+        --danger: #ff2f58;
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+        --radius-xl: 30px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --max: 1180px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(255, 46, 88, 0.22), transparent 26%),
+          radial-gradient(circle at left center, rgba(255, 176, 107, 0.14), transparent 22%),
+          linear-gradient(180deg, #0a090d 0%, #100d13 30%, #0b090e 100%);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 94, 54, 0.08) 0 8%,
+            transparent 8% 16%,
+            rgba(255, 94, 54, 0.08) 16% 24%,
+            transparent 24% 100%
+          );
+        mix-blend-mode: screen;
+        opacity: 0.08;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      section,
+      footer {
+        width: min(calc(100% - 32px), var(--max));
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(16px);
+        background: rgba(10, 9, 13, 0.76);
+        border-bottom: 1px solid rgba(255, 132, 102, 0.1);
+      }
+
+      .topbar-inner {
+        width: min(calc(100% - 32px), var(--max));
+        margin: 0 auto;
+        padding: 14px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .brand {
+        font-weight: 800;
+        letter-spacing: 0.04em;
+      }
+
+      .nav {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      section {
+        padding: 88px 0;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      .hero-copy,
+      .hero-visual,
+      .panel,
+      .metric-card,
+      .myth-card,
+      .risk-card,
+      .comparison-table,
+      .source-card,
+      .cta-box {
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-copy {
+        padding: 34px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255, 47, 88, 0.12);
+        color: #ffc2c7;
+        font-size: 0.9rem;
+        letter-spacing: 0.04em;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.1;
+      }
+
+      h1 {
+        margin-top: 18px;
+        font-size: clamp(2.7rem, 5vw, 5.4rem);
+        font-weight: 900;
+        letter-spacing: -0.04em;
+      }
+
+      .accent-text {
+        color: var(--accent);
+        text-shadow: 0 0 20px rgba(255, 94, 54, 0.18);
+      }
+
+      .hero-subtitle {
+        margin-top: 18px;
+        max-width: 40rem;
+        color: var(--muted);
+        font-size: 1.08rem;
+      }
+
+      .hero-warning {
+        margin-top: 24px;
+        padding: 18px 20px;
+        border-radius: var(--radius-md);
+        background: linear-gradient(135deg, rgba(255, 47, 88, 0.12), rgba(255, 94, 54, 0.08));
+        border: 1px solid rgba(255, 94, 54, 0.18);
+        font-weight: 700;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .button {
+        min-height: 52px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 22px;
+        border-radius: 999px;
+        font-weight: 800;
+        transition: transform 0.24s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button-primary {
+        color: white;
+        background: linear-gradient(135deg, var(--danger), var(--accent));
+      }
+
+      .button-secondary {
+        color: #ffe0d1;
+        border: 1px solid rgba(255, 176, 107, 0.28);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .hero-visual {
+        position: relative;
+        overflow: hidden;
+        padding: 28px;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(255, 176, 107, 0.16), transparent 20%),
+          linear-gradient(160deg, rgba(255, 47, 88, 0.16), rgba(10, 9, 13, 0.8) 48%),
+          var(--panel-strong);
+      }
+
+      .warning-tape {
+        position: absolute;
+        left: -24px;
+        right: -24px;
+        top: 24px;
+        padding: 10px 0;
+        transform: rotate(-7deg);
+        background: repeating-linear-gradient(
+          90deg,
+          rgba(255, 176, 107, 0.95) 0 28px,
+          rgba(31, 16, 12, 0.95) 28px 56px
+        );
+        color: #120d09;
+        text-align: center;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.36);
+      }
+
+      .lungs-card {
+        margin-top: 78px;
+        border-radius: 26px;
+        min-height: 390px;
+        padding: 28px;
+        position: relative;
+        background:
+          radial-gradient(circle at center, rgba(255, 47, 88, 0.1), transparent 46%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+        border: 1px solid rgba(255, 132, 102, 0.1);
+      }
+
+      .monitor-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 18%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, rgba(255, 47, 88, 0.65), transparent);
+        box-shadow: 0 0 16px rgba(255, 47, 88, 0.4);
+      }
+
+      .smoke,
+      .smoke::before,
+      .smoke::after {
+        position: absolute;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.02));
+      }
+
+      .smoke {
+        width: 120px;
+        height: 120px;
+        top: 34%;
+        left: 12%;
+        filter: blur(6px);
+      }
+
+      .smoke::before,
+      .smoke::after {
+        content: "";
+      }
+
+      .smoke::before {
+        width: 160px;
+        height: 160px;
+        top: -30px;
+        left: 120px;
+      }
+
+      .smoke::after {
+        width: 110px;
+        height: 110px;
+        top: 74px;
+        left: 230px;
+      }
+
+      .lungs-svg {
+        width: 100%;
+        height: 260px;
+        display: block;
+        margin-top: 50px;
+      }
+
+      .visual-note {
+        margin-top: 16px;
+        color: #ffd4c6;
+        font-weight: 700;
+      }
+
+      .section-intro {
+        max-width: 760px;
+        margin-bottom: 28px;
+      }
+
+      .section-kicker {
+        color: var(--accent-2);
+        font-size: 0.92rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .section-title {
+        font-size: clamp(2.05rem, 3vw, 3.3rem);
+        letter-spacing: -0.03em;
+      }
+
+      .section-desc {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 1.04rem;
+      }
+
+      .alert-line {
+        margin-top: 18px;
+        padding: 14px 18px;
+        border-left: 4px solid var(--danger);
+        background: rgba(255, 47, 88, 0.08);
+        font-weight: 700;
+      }
+
+      .metrics-grid,
+      .myth-grid,
+      .risk-grid,
+      .sources-grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .myth-grid,
+      .risk-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .metric-card,
+      .myth-card,
+      .risk-card,
+      .source-card {
+        padding: 24px;
+      }
+
+      .metric-number {
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
+        font-weight: 900;
+        color: var(--accent);
+        line-height: 1;
+      }
+
+      .metric-label {
+        margin-top: 12px;
+        font-weight: 800;
+        font-size: 1.02rem;
+      }
+
+      .metric-copy,
+      .myth-card p,
+      .risk-card p,
+      .source-card p,
+      .comparison-table td,
+      .comparison-table th,
+      .section-desc,
+      .hero-subtitle {
+        line-height: 1.72;
+      }
+
+      .metric-copy,
+      .myth-card p,
+      .risk-card p,
+      .source-card p {
+        color: var(--muted);
+        margin: 10px 0 0;
+      }
+
+      .myth-tag,
+      .risk-tag {
+        display: inline-flex;
+        padding: 6px 11px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        color: #ffd6bf;
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
+        margin-bottom: 14px;
+      }
+
+      .comparison-table {
+        overflow: hidden;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 18px 20px;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 132, 102, 0.12);
+        vertical-align: top;
+      }
+
+      th {
+        background: rgba(255, 255, 255, 0.04);
+        color: #ffe5d7;
+        font-weight: 800;
+      }
+
+      td {
+        color: var(--muted);
+      }
+
+      .warning-cell {
+        color: #ffd0c3;
+        font-weight: 700;
+      }
+
+      .cta-box {
+        padding: 34px;
+        background:
+          radial-gradient(circle at center, rgba(255, 47, 88, 0.16), rgba(12, 11, 16, 0.96) 60%),
+          var(--panel-strong);
+        text-align: center;
+      }
+
+      .cta-title {
+        font-size: clamp(2rem, 3.2vw, 3.4rem);
+        letter-spacing: -0.03em;
+      }
+
+      .cta-desc {
+        max-width: 720px;
+        margin: 16px auto 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+      }
+
+      .cta-actions {
+        margin-top: 26px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      footer {
+        padding: 0 0 42px;
+        color: #9d8c85;
+        font-size: 0.92rem;
+      }
+
+      .fade {
+        opacity: 0;
+        transform: translateY(18px);
+        animation: fadeUp 0.7s ease forwards;
+      }
+
+      .delay-1 { animation-delay: 0.08s; }
+      .delay-2 { animation-delay: 0.16s; }
+      .delay-3 { animation-delay: 0.24s; }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 1080px) {
+        .metrics-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .myth-grid,
+        .risk-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 840px) {
+        .hero-grid,
+        .metrics-grid,
+        .myth-grid,
+        .risk-grid,
+        .sources-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar-inner {
+          display: grid;
+          justify-items: start;
+        }
+      }
+
+      @media (max-width: 560px) {
+        section {
+          padding: 66px 0;
+        }
+
+        .hero-copy,
+        .hero-visual,
+        .metric-card,
+        .myth-card,
+        .risk-card,
+        .source-card,
+        .cta-box {
+          padding: 22px;
+        }
+
+        .hero-actions,
+        .cta-actions {
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        th,
+        td {
+          padding: 14px;
+          font-size: 0.94rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">電子菸危害警示頁</div>
+        <nav class="nav">
+          <a href="#why">為什麼更危險</a>
+          <a href="#data">關鍵數據</a>
+          <a href="#compare">和紙菸比</a>
+          <a href="#sources">官方來源</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="hero-copy fade">
+            <div class="eyebrow">你以為是替代，其實可能是另一種加重</div>
+            <h1>吸<span class="accent-text">電子菸</span>，<br />真的比較好嗎？</h1>
+            <p class="hero-subtitle">
+              如果你以為電子菸只是味道比較淡、外觀比較新、比較不臭，
+              那你最可能忽略的，正是它真正危險的地方。
+            </p>
+            <div class="hero-warning">
+              先說清楚：目前沒有充分證據支持「電子菸就是安全替代品」。
+              而在尼古丁濃度、室內微粒暴露、雙重使用與爆炸事故等面向，
+              電子菸甚至可能比你熟悉的紙菸更糟。
+            </div>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#data">先看數據</a>
+              <a class="button button-secondary" href="#sources">直接看官方來源</a>
+            </div>
+          </div>
+
+          <div class="hero-visual fade delay-1">
+            <div class="warning-tape">Warning Warning Warning</div>
+            <div class="lungs-card">
+              <div class="monitor-line"></div>
+              <div class="smoke"></div>
+              <svg class="lungs-svg" viewBox="0 0 520 280" aria-hidden="true">
+                <defs>
+                  <linearGradient id="lungGlow" x1="0%" x2="100%">
+                    <stop offset="0%" stop-color="#ff6840" />
+                    <stop offset="100%" stop-color="#ff2f58" />
+                  </linearGradient>
+                </defs>
+                <path d="M250 30 L250 115" stroke="#f8d4c7" stroke-width="10" stroke-linecap="round" />
+                <path
+                  d="M248 115 C205 106 150 115 114 150 C86 177 83 233 129 248 C165 260 205 241 219 213 C230 191 230 143 248 115 Z"
+                  fill="url(#lungGlow)"
+                  opacity="0.92"
+                />
+                <path
+                  d="M272 115 C315 106 370 115 406 150 C434 177 437 233 391 248 C355 260 315 241 301 213 C290 191 290 143 272 115 Z"
+                  fill="url(#lungGlow)"
+                  opacity="0.92"
+                />
+                <path d="M216 150 C182 176 168 208 166 238" stroke="#ffd0c0" stroke-width="4" fill="none" opacity="0.8" />
+                <path d="M304 150 C338 176 352 208 354 238" stroke="#ffd0c0" stroke-width="4" fill="none" opacity="0.8" />
+                <circle cx="168" cy="232" r="14" fill="#170f15" opacity="0.78" />
+                <circle cx="350" cy="220" r="19" fill="#170f15" opacity="0.78" />
+                <circle cx="324" cy="186" r="10" fill="#170f15" opacity="0.68" />
+              </svg>
+              <div class="visual-note">看起來比較乾淨，不代表吸進去的比較乾淨。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="why">
+        <div class="section-intro fade">
+          <div class="section-kicker">Why This Matters</div>
+          <h2 class="section-title">真正危險的，不只是「有沒有煙味」</h2>
+          <p class="section-desc">
+            電子菸最容易騙過人的地方，是它把風險包裝得比較新、比較潮、比較不刺鼻。
+            但官方資料顯示，電子菸不是無害水蒸氣，而是會產生含尼古丁、重金屬、
+            揮發性有機物與超細微粒的氣膠。
+          </p>
+          <div class="alert-line">
+            更精確地說：不是所有健康指標都已經證實「全面高於紙菸」，
+            但在某些暴露、成癮與事故風險上，電子菸可以更高、更隱蔽，也更容易讓人掉以輕心。
+          </div>
+        </div>
+
+        <div class="myth-grid">
+          <article class="myth-card fade delay-1">
+            <div class="myth-tag">迷思 01</div>
+            <h3>看不到焦油，就以為比較安全</h3>
+            <p>
+              電子菸不是單純水蒸氣。國際與官方資料都指出，氣膠中可能含有尼古丁、
+              致癌化學物質、重金屬與會深入肺部的細微粒。
+            </p>
+          </article>
+          <article class="myth-card fade delay-2">
+            <div class="myth-tag">迷思 02</div>
+            <h3>味道比較淡，就以為對旁人影響小</h3>
+            <p>
+              國民健康署整理的資料指出，電子菸在室內使用時，PM2.5、尼古丁與金屬濃度都會明顯上升，
+              對室內空氣品質的影響可能比想像中更大。
+            </p>
+          </article>
+          <article class="myth-card fade delay-3">
+            <div class="myth-tag">迷思 03</div>
+            <h3>比較新潮，反而更容易讓人上癮</h3>
+            <p>
+              尼古丁鹽配方可以讓高濃度尼古丁變得沒那麼嗆，吸入口的門檻變低，
+              但依賴風險卻可能更高，尤其對青少年與新手更危險。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="data">
+        <div class="section-intro fade">
+          <div class="section-kicker">Key Numbers</div>
+          <h2 class="section-title">如果你要講數據，這些數字夠直接</h2>
+          <p class="section-desc">
+            下列數據多來自台灣國民健康署整理的官方衛教資料與其引用研究。
+            我把它們整理成最容易上網站的版本，方便你之後直接擴充或改寫。
+          </p>
+        </div>
+
+        <div class="metrics-grid">
+          <article class="metric-card fade delay-1">
+            <div class="metric-number">40%</div>
+            <div class="metric-label">室內微粒濃度可高於紙菸</div>
+            <p class="metric-copy">
+              國民健康署引用研究指出，電子菸氣膠微粒濃度約比紙菸高出 40%，
+              代表它對旁人的室內暴露，不是你以為的「沒什麼」。
+            </p>
+          </article>
+          <article class="metric-card fade delay-2">
+            <div class="metric-number">197</div>
+            <div class="metric-label">PM2.5 平均值 μg/m³</div>
+            <p class="metric-copy">
+              室內使用電子菸時，可測得高濃度 PM2.5、尼古丁與丙二醇；
+              可吸入微粒濃度甚至可大幅增加 11 到 20 倍。
+            </p>
+          </article>
+          <article class="metric-card fade delay-3">
+            <div class="metric-number">225 支</div>
+            <div class="metric-label">一瓶煙油可對應的尼古丁量</div>
+            <p class="metric-copy">
+              以 30ml、6mg/ml 的煙油估算，總尼古丁量約 180mg，
+              國健署換算約相當於 225 支紙菸。實際吸收量會因使用方式不同而變動，
+              但這個數字足以說明濃度不是小事。
+            </p>
+          </article>
+          <article class="metric-card fade delay-1">
+            <div class="metric-number">91%</div>
+            <div class="metric-label">2022 上半年檢驗含尼古丁</div>
+            <p class="metric-copy">
+              國民健康署指出，2022 年上半年檢驗的電子煙油中有高達 9 成 1 含尼古丁；
+              在未標示含尼古丁的檢體裡，也有 8 成 6 驗出尼古丁。
+            </p>
+          </article>
+        </div>
+
+        <div class="risk-grid" style="margin-top: 18px;">
+          <article class="risk-card fade delay-2">
+            <div class="risk-tag">肺部疾病</div>
+            <h3>4.36 倍風險</h3>
+            <p>
+              國民健康署引用研究指出，未吸紙菸但使用電子菸的人，
+              罹患肺部疾病的風險比完全不使用紙菸與電子菸者高出 4.36 倍。
+            </p>
+          </article>
+          <article class="risk-card fade delay-3">
+            <div class="risk-tag">雙重使用更糟</div>
+            <h3>1.47 倍風險</h3>
+            <p>
+              已吸紙菸又吸電子菸的雙重使用者，比只吸紙菸的人再高出 1.47 倍肺部疾病風險。
+              所以「白天抽電子菸、偶爾再抽紙菸」不是減害，而是加碼。
+            </p>
+          </article>
+          <article class="risk-card fade delay-1">
+            <div class="risk-tag">裝置事故</div>
+            <h3>紙菸沒有的爆炸傷害</h3>
+            <p>
+              電子菸還多了一層紙菸沒有的機械與電池風險：灼傷、爆炸、口袋起火、臉部與手部重傷。
+              這不是成分風險，而是產品型態帶來的額外風險。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="compare">
+        <div class="section-intro fade">
+          <div class="section-kicker">Comparison</div>
+          <h2 class="section-title">不是「哪個比較潮」，而是哪個風險被低估</h2>
+          <p class="section-desc">
+            紙菸很危險，這件事大家已經比較知道；電子菸的問題是，它常被誤認為比較安全，
+            於是更容易讓人放下戒心、提高使用頻率，甚至把他人也一起暴露在風險裡。
+          </p>
+        </div>
+
+        <div class="comparison-table fade delay-1">
+          <table>
+            <thead>
+              <tr>
+                <th>比較面向</th>
+                <th>紙菸</th>
+                <th>電子菸</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="warning-cell">大眾警覺</td>
+                <td>多數人知道有害，心理防線較高</td>
+                <td>常被包裝成替代品，警覺反而更低</td>
+              </tr>
+              <tr>
+                <td class="warning-cell">尼古丁風險</td>
+                <td>每支有明確上限</td>
+                <td>煙油濃度可能很高，尼古丁鹽更容易讓人不知不覺吸進更多</td>
+              </tr>
+              <tr>
+                <td class="warning-cell">室內暴露</td>
+                <td>旁人通常會迴避</td>
+                <td>較容易在室內使用，造成旁人吸入微粒與尼古丁氣膠</td>
+              </tr>
+              <tr>
+                <td class="warning-cell">雙重使用</td>
+                <td>單一風險已高</td>
+                <td>很多人不是替代，而是兩種一起用，風險再往上堆</td>
+              </tr>
+              <tr>
+                <td class="warning-cell">裝置事故</td>
+                <td>無電池爆炸問題</td>
+                <td>多了電池過熱、自燃、爆炸與燒傷風險</td>
+              </tr>
+              <tr>
+                <td class="warning-cell">欺騙性</td>
+                <td>危害形象明確</td>
+                <td>外觀、口味、行銷語言更容易讓人誤判風險</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="reasons">
+        <div class="section-intro fade">
+          <div class="section-kicker">Reasons</div>
+          <h2 class="section-title">為什麼電子菸可能讓你付出更大的代價？</h2>
+          <p class="section-desc">
+            這裡的「更大」，不是簡單粗暴地說所有毒性都全面超過紙菸，
+            而是指它在某些情境下可能更容易讓你暴露更多、吸得更久、戒心更低。
+          </p>
+        </div>
+
+        <div class="risk-grid">
+          <article class="risk-card fade delay-1">
+            <div class="risk-tag">原因 01</div>
+            <h3>高濃度尼古丁更容易被吞下去</h3>
+            <p>
+              尼古丁鹽讓高濃度煙油變得比較不刺激，使用者可能在口感較順的情況下，
+              持續吸入更多尼古丁，成癮卻更深。
+            </p>
+          </article>
+          <article class="risk-card fade delay-2">
+            <div class="risk-tag">原因 02</div>
+            <h3>你以為在減害，實際上只是延長使用</h3>
+            <p>
+              很多人不是從紙菸完全轉移，而是雙重使用。這代表沒有真正減少暴露，
+              反而可能讓一天之內的總使用次數變更多。
+            </p>
+          </article>
+          <article class="risk-card fade delay-3">
+            <div class="risk-tag">原因 03</div>
+            <h3>風險藏得更深，所以更容易忽略</h3>
+            <p>
+              沒有濃烈煙味、不像紙菸那麼刺鼻，不代表更安全；
+              它只是更不容易在第一時間讓你感到危險。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="sources">
+        <div class="section-intro fade">
+          <div class="section-kicker">Official Sources</div>
+          <h2 class="section-title">這些說法，來自哪些資料？</h2>
+          <p class="section-desc">
+            這頁內容以台灣官方衛教資料為主，並補充國際官方機構的說法。
+            若之後要正式上線，我建議把這一段保留，讓整頁更有可信度。
+          </p>
+        </div>
+
+        <div class="sources-grid">
+          <article class="source-card fade delay-1">
+            <h3>國民健康署：電子煙的煙霧比紙菸危害低？</h3>
+            <p>整理室內 PM2.5、微粒濃度、金屬與室內污染變化。</p>
+            <a class="button button-secondary" href="https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=127&pid=7443" target="_blank" rel="noreferrer">打開來源</a>
+          </article>
+          <article class="source-card fade delay-2">
+            <h3>國民健康署：為什麼一直宣導電子煙危害？</h3>
+            <p>整理 4.36 倍與 1.47 倍肺部疾病風險等說法。</p>
+            <a class="button button-secondary" href="https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=127&pid=13514" target="_blank" rel="noreferrer">打開來源</a>
+          </article>
+          <article class="source-card fade delay-3">
+            <h3>國民健康署：近 9 成電子煙油含尼古丁</h3>
+            <p>整理 91% 含尼古丁、未標示檢體 86% 驗出尼古丁。</p>
+            <a class="button button-secondary" href="https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=4576&pid=14956" target="_blank" rel="noreferrer">打開來源</a>
+          </article>
+          <article class="source-card fade delay-1">
+            <h3>國民健康署：我只要不吸含尼古丁就沒危害？</h3>
+            <p>整理 5,627 件檢體中 74% 含尼古丁，並提到粒徑與呼吸道風險。</p>
+            <a class="button button-secondary" href="https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=127&pid=7641" target="_blank" rel="noreferrer">打開來源</a>
+          </article>
+          <article class="source-card fade delay-2">
+            <h3>國民健康署：電子煙會爆炸都是個案？</h3>
+            <p>整理爆炸、灼傷與裝置事故的風險來源。</p>
+            <a class="button button-secondary" href="https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=127&pid=10065" target="_blank" rel="noreferrer">打開來源</a>
+          </article>
+          <article class="source-card fade delay-3">
+            <h3>CDC / WHO 補充</h3>
+            <p>兩者都指出電子菸不是安全產品；CDC 亦提醒雙重使用可能帶來更高毒素暴露。</p>
+            <div class="hero-actions" style="margin-top: 14px;">
+              <a class="button button-secondary" href="https://www.cdc.gov/tobacco/e-cigarettes/health-effects.html" target="_blank" rel="noreferrer">CDC</a>
+              <a class="button button-secondary" href="https://www.who.int/news-room/questions-and-answers/item/e-cigarettes-how-risky-are-they" target="_blank" rel="noreferrer">WHO</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="cta">
+        <div class="cta-box fade">
+          <h2 class="cta-title">最危險的不是不知道，<br />而是以為自己知道。</h2>
+          <p class="cta-desc">
+            如果你正在抽、正在考慮換電子菸，或想把這頁分享給還相信「電子菸比較安全」的人，
+            先把這幾個數字記住：40%、225 支、91%、4.36 倍、1.47 倍。
+          </p>
+          <div class="cta-actions">
+            <a class="button button-primary" href="#data">回去看數據</a>
+            <a class="button button-secondary" href="#sources">直接看官方資料</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        內容說明：本頁採用警示型表達，目的是提高風險辨識度；但就嚴格科學比較而言，
+        目前較穩妥的說法是「電子菸不是安全替代品，且在部分暴露、成癮與事故面向可能更糟」，
+        而非所有健康指標都已證實全面高於紙菸。
+      </p>
+    </footer>
+  </body>
+</html>
